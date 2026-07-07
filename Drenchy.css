@@ -197,7 +197,7 @@ background-position: 0 -70px;
 
 .ds4 .stick {
     position: absolute;
-    background: url(ps4-face-buttons.png);
+    background: url(DRENCHps4lsticks.png);
     height: 94px;
     width: 94px;
 }
@@ -229,7 +229,7 @@ background-position: 0 -70px;
 }
 
 .ds4 .face {
-    background: url(DRENCHps4lsticks.png);
+    background: url(DRENCHps4-dpad.png);
     position: absolute;
 }
 
