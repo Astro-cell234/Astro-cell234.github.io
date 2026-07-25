@@ -1,14 +1,14 @@
 /*BEGIN PS5 Controller Styling*/
 
 .controller.ds4 {
-    background: url(Base.png);
+    background: url(DRECNHY-PS5-BASE.png);
 	height: 713px;
     width: 903px;
     position: absolute;
 }
 
 .ds4.disconnected {
-    background: url(Disconnected.png);
+    background: url(DRENCHY-PS5-DISCON.png);
 }
 
 .ds4.disconnected div {
@@ -24,7 +24,7 @@
 .ds4 .trigger {
     width: 117px;
     height: 107;
-    background: url(Trigger.png);
+    background: url(DRENCHY-PS5-TRIGGER.png);
 	opacity: 0;
 }
 
@@ -40,7 +40,7 @@
 .ds4 .bumper {
     width: 119px;
     height: 41px;
-    background: url(Bumper.png);
+    background: url(DRENCHY-PS5-BUMPER.png);
 	opacity: 0;
 }
 
@@ -74,7 +74,7 @@
 }
 
 .ds4 .touchpad.pressed {
-    background: url(Touchpad.png);
+    background: url(DRENCHY-PS5-TOUCHPAD.png);
 }
 
 .ds4 .meta {
@@ -86,7 +86,7 @@
 }
 
 .ds4 .meta.pressed {
-    background: url(Meta.png);
+    background: url(DRENCHY-PS5-META.png);
 }
 
 .ds4 .arrows {
@@ -98,7 +98,7 @@
 }
 
 .ds4 .back, .ds4 .start {
-    background: url(Start.png);
+    background: url(DRENCHY-PS5-START.png);
 	width: 25px;
     height: 41px;
     opacity: 0;
@@ -166,7 +166,7 @@
 
 .ds4 .stick {
     position: absolute;
-    background: url(Stick.png);
+    background: url(DRENCHY-PS5-STICKS.png);
 	height: 106px;
     width: 106px;
 }
@@ -192,7 +192,7 @@
 }
 
 .ds4 .face {
-    background: url(Dpad.png);
+    background: url(DRENCHY-PS5-DPAD.png);
 	position: absolute;
 }
 
