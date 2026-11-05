@@ -204,16 +204,16 @@
     left: 144px;
 }
 
-/* 1. Base style for the stick (Leave background blank so Gamepad Viewer can move it!) */
+/* 1. Base style for the stick wrapper (Completely clear layout box) */
 .xbox .stick {
     position: absolute !important;
-    background: none !important;    /* Clear native graphics */
+    background: none !important;    
     width: 100px !important;       
     height: 100px !important;      
     margin-top: 0px !important;
 }
 
-/* 2. Create a custom graphics layer INSIDE the stick */
+/* 2. Create the inner graphics layer */
 .xbox .stick::before {
     content: "" !important;
     position: absolute !important;
@@ -221,32 +221,45 @@
     left: 0 !important;
     width: 100% !important;
     height: 100% !important;
-    background-image: url(JOYSTICK-glow-unpressed.png) !important; /* Loads unpressed look */
+    background-image: url(JOYSTICK-glow-unpressed.png) !important; 
     background-repeat: no-repeat !important;
     background-position: 0px 0px !important;
     
-    /* Smoothly cross-fades the image files with NO sliding path possible */
+    /* Smoothly cross-fades the graphic changes with zero sliding */
     transition: background-image 0.12s ease-in-out !important; 
 }
 
-/* 3. Global Pressed Override - Changes ONLY the image inside the inner layer */
+/* 3. Global Pressed Overrides for the INNER graphic layer */
 .controller.xbox .stick.pressed::before,
 .xbox .stick.pressed::before {
-    background-image: url(JOYSTICK-glow-pressed-new.png) !important; /* Swaps to pressed look */
+    background-image: url(JOYSTICK-glow-pressed-new.png) !important; 
     background-position: 0px 0px !important; 
 }
 
-/* 4. Neutralize Gamepad Viewer's hardcoded pressed scripts on the main container */
-/* REMOVED: transform: none !important; This allows full script-driven up/down/left/right translation! */
+/* ==========================================================================
+   4. THE UNLOCK: Kill Gamepad Viewer's Native Shifting Restraints
+   ========================================================================== */
+/* These combinations match Gamepad Viewer's internal engine strings exactly.
+   By resetting them to 0px and removing 'important' from the transform, 
+   we force the app to calculate full up/down vertical movement. */
+.xbox .stick.pressed,
+.xbox .stick.pressed.left,
+.xbox .stick.pressed.right,
 .controller.xbox .stick.pressed,
-.xbox .stick.pressed {
+.controller.xbox .stick.pressed.left,
+.controller.xbox .stick.pressed.right {
     margin-top: 0px !important; 
-    background-position-y: 0px !important;
+    background-position: 0px 0px !important;
+    background-image: none !important;
+    background: none !important;
+    
+    /* NO !important here. This allows full JavaScript 360-degree translations */
+    transform: translate(var(--thumbstick-x, 0px), var(--thumbstick-y, 0px)); 
 }
 
-/* 5. Physical Layout Positioning on the controller face */
-/* (Adjusted by -8px to perfectly re-center your new 100px canvas size) */
-
+/* ==========================================================================
+   5. Physical Layout Positioning on the controller face
+   ========================================================================== */
 .xbox .stick.left {
     top: -8px !important;          
     left: -8px !important;         
