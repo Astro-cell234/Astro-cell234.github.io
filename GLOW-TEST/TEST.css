@@ -221,7 +221,7 @@
     left: 0 !important;
     width: 100% !important;
     height: 100% !important;
-    background-image: url(xbox-assets/stick.png) !important; /* Loads unpressed look */
+    background-image: url(JOYSTICK-glow-unpressed.png) !important; /* Loads unpressed look */
     background-repeat: no-repeat !important;
     background-position: 0px 0px !important;
     
@@ -232,7 +232,7 @@
 /* 3. Global Pressed Override - Changes ONLY the image inside the inner layer */
 .controller.xbox .stick.pressed::before,
 .xbox .stick.pressed::before {
-    background-image: url(xbox-assets/stick-pressed.png) !important; /* Swaps to pressed look */
+    background-image: url(JOYSTICK-glow-pressed-new.png) !important; /* Swaps to pressed look */
     background-position: 0px 0px !important; /* Keeps coordinates completely locked */
 }
 
