@@ -207,7 +207,7 @@
 /* 1. Base style for the stick (Loads your single 200x100px file) */
 .xbox .stick {
     position: absolute !important;
-    background-image: url(JOYSTICK-glow.png) !important;
+    background-image: url(JOYSTICK-glow-new.png) !important;
     background-repeat: no-repeat !important;
     width: 100px !important;       /* Your 100px box width */
     height: 100px !important;      /* Your 100px box height */
