@@ -142,7 +142,7 @@
 /* 1. Base style for the UNPRESSED button (Stays completely static) */
 .xbox .button {
     position: absolute !important;
-    background-image: url(ABXY-GLOW-NEW-SHAPE-TEST-unpressed-png) !important; /* Points to unpressed row ONLY */
+    background-image: url(ABXY-GLOW-NEW-SHAPE-TEST-unpressed.png) !important; /* Points to unpressed row ONLY */
     background-repeat: no-repeat !important;
     width: 100px !important;       
     height: 100px !important;      
