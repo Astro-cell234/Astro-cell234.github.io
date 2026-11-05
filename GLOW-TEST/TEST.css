@@ -169,8 +169,7 @@
     left: 0 !important;
     width: 100% !important;
     height: 100% !important;
-    background-image: url(
-ABXY-GLOW-NEW-SHAPE-TEST-pressed.png) !important; /* Points to pressed row ONLY */
+    background-image: url(ABXY-GLOW-NEW-SHAPE-TEST-pressed.png) !important; /* Points to pressed row ONLY */
     background-repeat: no-repeat !important;
     
     /* Hide the pressed layer completely by default */
