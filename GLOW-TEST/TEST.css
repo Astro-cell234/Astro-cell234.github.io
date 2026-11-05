@@ -204,13 +204,14 @@
     left: 144px;
 }
 
-/* 1. Base style for the stick (Blank layout container that Gamepad Viewer controls) */
+/* 1. Base style for the stick wrapper (Restores the exact native sizing from your original file) */
 .xbox .stick {
-    position: absolute; /* NO !important on layout so the script can manipulate top/left positions */
+    position: absolute; 
     background: none !important;    /* Strips original template file graphics */
-    width: 83px !important;        
-    height: 83px !important;       
-    margin-top: 0px !important;    
+    width: 83px;                    /* Native width: allows JavaScript calculations to work */
+    height: 83px;                   /* Native height: allows JavaScript calculations to work */
+    
+    /* Safely allow your custom 100px layer inside to spill past the 83px boundaries */
     overflow: visible !important;  
 }
 
@@ -222,7 +223,6 @@
     /* Centers your larger 100px box perfectly right over the 83px boundary box */
     top: -8.5px !important;
     left: -8.5px !important;
-    
     width: 100px !important;       
     height: 100px !important;      
     
@@ -235,27 +235,14 @@
 }
 
 /* 3. Global Pressed Override - Changes ONLY the image on the inner layer */
-.controller.xbox .stick.pressed::before,
 .xbox .stick.pressed::before {
     background-image: url(JOYSTICK-glow-pressed-new.png) !important; /* Swaps to pressed look */
     background-position: 0px 0px !important; 
 }
 
-/* 4. Kill Gamepad Viewer's Native Shifting Restraints on the Wrapper */
-.xbox .stick.pressed,
-.controller.xbox .stick.pressed {
-    margin-top: 0px !important; 
-    background-position: 0px 0px !important;
-    background-image: none !important;
-    background: none !important;
-}
-
-/* ==========================================================================
-   5. UNLOCKED LAYOUT COORDINATES
-   ========================================================================== */
-/* These match the original coordinate values. By dropping the !important tag entirely, 
-   we clear a path for Gamepad Viewer's JavaScript engine to apply fluid 360-degree top and left adjustments. */
-
+/* 4. Original Physical Layout Positions from your Working Template */
+/* By matching your original file exactly and keeping custom logic nested inside, 
+   Gamepad Viewer can calculate full 360-degree analog translations. */
 .xbox .stick.left {
     top: 0;          
     left: 0;         
