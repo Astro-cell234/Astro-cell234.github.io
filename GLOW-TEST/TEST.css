@@ -204,40 +204,42 @@
     left: 144px;
 }
 
-/* 1. Base style for the stick (Default Unpressed File) */
+/* 1. Base style for the stick (Loads your single 200x100px file) */
 .xbox .stick {
     position: absolute !important;
-    background-image: url(JOYSTICK-glow-unpressed.png) !important;
+    background-image: url(JOYSTICK-glow.png) !important;
     background-repeat: no-repeat !important;
-    width: 100px !important;       /* Your 100px Photoshop grid box width */
-    height: 100px !important;      /* Your 100px Photoshop grid box height */
+    width: 100px !important;       /* Your 100px box width */
+    height: 100px !important;      /* Your 100px box height */
     
-    /* Smoothly cross-fades the image without any physical movement */
-    transition: background-image 0.12s ease-in-out !important; 
+    /* Default position looks at Box 1 (Unpressed) */
+    background-position: 0px 0px !important; 
+    
+    /* Smoothly cross-fades the shift over 0.12 seconds */
+    transition: background-position 0.12s ease-in-out !important; 
 }
 
-/* 2. Global Pressed Override - Swaps the file but keeps position completely static */
+/* 2. Global Pressed Override - Snaps to Box 2 (Pressed) horizontally */
 .controller.xbox .stick.pressed,
 .xbox .stick.pressed {
-    background-image: url(JOYSTICK-glow-pressed.png) !important; 
-    background-position-y: 0px !important; /* Blocks Gamepad Viewer's native script */
-    transform: none !important;            /* Ensures it stays perfectly still, no dipping */
+    background-position: -100px 0px !important; /* Moves 100px left to show your pressed art */
+    margin-top: 0px !important;                  /* Blocks Gamepad Viewer's drop script */
+    transform: none !important;                  /* Ensures no downward moving sequence */
 }
 
-/* 3. Physical Layout Positioning (Corrected for the new 100px box size) */
-/* (Original size was 83px. New is 100px. Offset difference is -8.5px, rounded to -8px) */
+/* 3. Physical Layout Positioning on the controller face */
+/* (Adjusted by -8px to perfectly re-center your new 100px canvas size) */
 
 .xbox .stick.left {
-    top: -8px !important;          /* Original 0px minus the 8px padding shift */
-    left: -8px !important;         /* Original 0px minus the 8px padding shift */
-    background-position: 0px 0px !important; /* Column 1 */
+    top: -8px !important;          
+    left: -8px !important;         
 }
 
 .xbox .stick.right {
-    top: 105px !important;         /* Original 113px - 8px padding shift */
-    left: 280px !important;        /* Original 288px - 8px padding shift */
-    background-position: -100px 0px !important; /* Column 2 */
+    top: 105px !important;         
+    left: 280px !important;        
 }
+
 
 .xbox .dpad {
     position: absolute;
