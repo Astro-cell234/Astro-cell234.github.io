@@ -196,26 +196,47 @@
 
 
 
-.xbox .stick {
+.xbox .sticks {
     position: absolute;
-    background: url(JOYSTICK.svg);
-    background-position: -85px 0;
-    height: 83px;
-    width: 83px;
+    width: 371px;
+    height: 196px;
+    top: 239px;
+    left: 144px;
 }
 
-.xbox .stick.pressed {
-    background-position: 0 0;
+/* 1. Base style for the stick (Default Unpressed File) */
+.xbox .stick {
+    position: absolute !important;
+    background-image: url(JOYSTICK-glow-unpressed.png) !important;
+    background-repeat: no-repeat !important;
+    width: 100px !important;       /* Your 100px Photoshop grid box width */
+    height: 100px !important;      /* Your 100px Photoshop grid box height */
+    
+    /* Smoothly cross-fades the image without any physical movement */
+    transition: background-image 0.12s ease-in-out !important; 
 }
+
+/* 2. Global Pressed Override - Swaps the file but keeps position completely static */
+.controller.xbox .stick.pressed,
+.xbox .stick.pressed {
+    background-image: url(JOYSTICK-glow-pressed.png) !important; 
+    background-position-y: 0px !important; /* Blocks Gamepad Viewer's native script */
+    transform: none !important;            /* Ensures it stays perfectly still, no dipping */
+}
+
+/* 3. Physical Layout Positioning (Corrected for the new 100px box size) */
+/* (Original size was 83px. New is 100px. Offset difference is -8.5px, rounded to -8px) */
 
 .xbox .stick.left {
-    top: 0;
-    left: 0;
+    top: -8px !important;          /* Original 0px minus the 8px padding shift */
+    left: -8px !important;         /* Original 0px minus the 8px padding shift */
+    background-position: 0px 0px !important; /* Column 1 */
 }
 
 .xbox .stick.right {
-    top: 113px;
-    left: 288px;
+    top: 105px !important;         /* Original 113px - 8px padding shift */
+    left: 280px !important;        /* Original 288px - 8px padding shift */
+    background-position: -100px 0px !important; /* Column 2 */
 }
 
 .xbox .dpad {
