@@ -233,14 +233,15 @@
 .controller.xbox .stick.pressed::before,
 .xbox .stick.pressed::before {
     background-image: url(JOYSTICK-glow-pressed-new.png) !important; /* Swaps to pressed look */
-    background-position: 0px 0px !important; /* Keeps coordinates completely locked */
+    background-position: 0px 0px !important; 
 }
 
 /* 4. Neutralize Gamepad Viewer's hardcoded pressed scripts on the main container */
+/* REMOVED: transform: none !important; This allows full script-driven up/down/left/right translation! */
 .controller.xbox .stick.pressed,
 .xbox .stick.pressed {
     margin-top: 0px !important; 
-    transform: none; /* DO NOT USE !important HERE. Allows Gamepad Viewer to move up/down/left/right! */
+    background-position-y: 0px !important;
 }
 
 /* 5. Physical Layout Positioning on the controller face */
@@ -255,6 +256,7 @@
     top: 105px !important;         
     left: 280px !important;        
 }
+
 
 
 
