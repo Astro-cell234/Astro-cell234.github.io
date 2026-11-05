@@ -139,63 +139,86 @@
     overflow: visible !important;
 }
 
-/* 1. Base style for the button (Default Unpressed File) */
+/* 1. Universal layout rule for your ABXY buttons */
 .xbox .button {
-    position: absolute;
-    background-image: url(ABXY-GLOW-NEW-SHAPE-TEST.png) !important;
+    position: absolute !important;
+    background-image: url(ABxY-GLOW-NEW-SHAPE-TEST.png) !important;
     background-repeat: no-repeat !important;
-    width: 100px !important;       
-    height: 100px !important;      
-    margin-top: 0px !important;
+    width: 100px !important;       /* Locks your 100px Photoshop grid width */
+    height: 100px !important;      /* Locks your 100px Photoshop grid height */
+    margin-top: 0px !important;    /* Completely stops the native 5px drop */
     
-    /* The Magic: Smoothly fade the background image swap over 0.15 seconds */
-    transition: background-image 0.15s ease-in-out !important;
+    /* Smoothly slides the sprite sheet vertically over 0.12 seconds */
+    transition: background-position-y 0.12s ease-in-out !important; 
 }
 
-/* 2. Overrides Gamepad Viewer's spatial script and forces the Pressed File swap */
+/* 2. Global pressed state killer - blocks Gamepad Viewer from rewriting values */
 .controller.xbox .button.pressed,
 .xbox .button.pressed {
-    background-image: url(xbox-assets/abxy-pressed.png) !important; /* Swaps the entire file */
-    background-position-y: 0px !important;  /* Blocks the native 48px crop script */
-    margin-top: 0px !important;             /* Blocks the native 5px drop script */
+    margin-top: 0px !important;
+    transform: none !important;
     opacity: 1 !important;
 }
 
-/* 3. Horizontal Grid Positioning (Remains exactly the same on your 100px layout) */
+/* ==========================================================================
+   3. COMBINED LAYOUT & COMPONENT MAPPING (UNPRESSED & PRESSED STATES)
+   ========================================================================== */
 
-.xbox .a {
-    top: 82px !important;          
-    left: 29px !important;         
-    background-position: 0px 0px !important; 
+/* --- BUTTON A --- */
+/* Target all variants Gamepad Viewer injects when A is resting vs pressed */
+.xbox .a, 
+.xbox .button.a, 
+.xbox .button.pressed.a, 
+.controller.xbox .button.pressed.a {
+    top: 82px !important;          /* Fixed padding shift */
+    left: 29px !important;         /* Fixed padding shift */
+    background-position-x: 0px !important; /* Column 1 */
 }
+/* Unpressed Position */
+.xbox .a { background-position-y: 0px !important; }
+/* Pressed Position - Slides your sheet down 100px to your Photoshop Row 2 */
+.xbox .button.pressed.a { background-position-y: -100px !important; }
 
-.xbox .b {
+
+/* --- BUTTON B --- */
+.xbox .b, 
+.xbox .button.b, 
+.xbox .button.pressed.b, 
+.controller.xbox .button.pressed.b {
     top: 32px !important;          
     right: -26px !important;       
     left: auto !important;         
-    background-position: -100px 0px !important; 
+    background-position-x: -100px !important; /* Column 2 */
 }
+.xbox .b { background-position-y: 0px !important; }
+.xbox .button.pressed.b { background-position-y: -100px !important; }
 
-.xbox .x {
+
+/* --- BUTTON X --- */
+.xbox .x, 
+.xbox .button.x, 
+.xbox .button.pressed.x, 
+.controller.xbox .button.pressed.x {
     top: 32px !important;          
     left: -22px !important;        
-    background-position: -200px 0px !important; 
+    background-position-x: -200px !important; /* Column 3 */
 }
+.xbox .x { background-position-y: 0px !important; }
+.xbox .button.pressed.x { background-position-y: -100px !important; }
 
-.xbox .y {
+
+/* --- BUTTON Y --- */
+.xbox .y, 
+.xbox .button.y, 
+.xbox .button.pressed.y, 
+.controller.xbox .button.pressed.y {
     top: -19px !important;         
     left: 29px !important;         
-    background-position: -300px 0px !important; 
+    background-position-x: -300px !important; /* Column 4 */
 }
+.xbox .y { background-position-y: 0px !important; }
+.xbox .button.pressed.y { background-position-y: -100px !important; }
 
-
-.xbox .sticks {
-    position: absolute;
-    width: 371px;
-    height: 196px;
-    top: 239px;
-    left: 144px;
-}
 
 .xbox .stick {
     position: absolute;
