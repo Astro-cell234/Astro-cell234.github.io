@@ -204,35 +204,33 @@
     left: 144px;
 }
 
-/* 1. Base style for the stick (LOCKED to native sizes so the script moves perfectly!) */
+/* 1. Base style for the stick (Blank layout container that Gamepad Viewer controls) */
 .xbox .stick {
-    position: absolute !important;
-    background: none !important;    /* Clears original graphics completely */
-    width: 83px !important;        /* NATIVE SIZE: Keeps JavaScript physics accurate */
-    height: 83px !important;       /* NATIVE SIZE: Keeps JavaScript physics accurate */
-    margin-top: 0px !important;    /* Prevents native 5px jitter drops */
-    
-    /* Safely allow your custom 100px layer inside to spill past the 83px edges */
+    position: absolute; /* NO !important on layout so the script can manipulate top/left positions */
+    background: none !important;    /* Strips original template file graphics */
+    width: 83px !important;        
+    height: 83px !important;       
+    margin-top: 0px !important;    
     overflow: visible !important;  
 }
 
-/* 2. Create the inner graphics layer (This is where your 100px canvas lives) */
+/* 2. Create the inner graphics layer (Houses your custom 100px canvas size) */
 .xbox .stick::before {
     content: "" !important;
     position: absolute !important;
     
-    /* Shift the graphic up and left by 8.5px to perfectly center your 100px box over the 83px box */
+    /* Centers your larger 100px box perfectly right over the 83px boundary box */
     top: -8.5px !important;
     left: -8.5px !important;
     
-    width: 100px !important;       /* Your custom 100px box dimensions */
-    height: 100px !important;      /* Your custom 100px box dimensions */
+    width: 100px !important;       
+    height: 100px !important;      
     
-    background-image: url(JOYSTICK-glow-unpressed.png) !important; /* Loads unpressed look */
+    background-image: url(JOYSTICK-glow-unpressed.png) !important; /* Standard Unpressed File */
     background-repeat: no-repeat !important;
     background-position: 0px 0px !important;
     
-    /* Smoothly cross-fades the images when swapped with no sliding layout possible */
+    /* Smoothly fades your image files when swapped with zero layout slide path */
     transition: background-image 0.12s ease-in-out !important; 
 }
 
@@ -250,25 +248,24 @@
     background-position: 0px 0px !important;
     background-image: none !important;
     background: none !important;
-    /* Do NOT include a transform or !important override here. 
-       This completely frees up the inline JavaScript to handle full 360-degree range movement! */
 }
 
 /* ==========================================================================
-   5. Original Physical Layout Positions 
+   5. UNLOCKED LAYOUT COORDINATES
    ========================================================================== */
-/* Because the wrapper is back to its original 83px size, we can return to the 
-   exact default coordinates from your original file. No manual padding math needed! */
+/* These match the original coordinate values. By dropping the !important tag entirely, 
+   we clear a path for Gamepad Viewer's JavaScript engine to apply fluid 360-degree top and left adjustments. */
 
 .xbox .stick.left {
-    top: 0px !important;          
-    left: 0px !important;         
+    top: 0;          
+    left: 0;         
 }
 
 .xbox .stick.right {
-    top: 113px !important;         
-    left: 288px !important;        
+    top: 113px;         
+    left: 288px;        
 }
+
 
 
 
