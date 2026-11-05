@@ -138,15 +138,15 @@
     left: 488px;
 }
 
-/* 1. Base style for the UNPRESSED button (Bottom Layer using your edited PNG) */
+/* 1. Base style for the UNPRESSED button (Bottom Layer) */
 .xbox .button {
     position: absolute;
     background: url(ABXY-GLOW-NEW-SHAPE-TEST.png) no-repeat;
-    width: 100px;       /* Your 100px grid box width */
-    height: 100px;      /* Your 100px grid box height */
+    width: 100px;       
+    height: 100px;      
 }
 
-/* 2. Setup for the PRESSED button (Top Layer using the same edited PNG) */
+/* 2. Setup for the PRESSED button (Top Layer) */
 .xbox .button::after {
     content: "";
     position: absolute;
@@ -155,55 +155,51 @@
     width: 100%;
     height: 100%;
     background: url(xbox-assets/abxy.png) no-repeat;
-    
-    /* Hide the pressed layer completely by default */
     opacity: 0; 
-    
-    /* Smoothly fade the opacity over 0.15 seconds */
     transition: opacity 0.15s ease-in-out; 
 }
 
-/* 3. Trigger: When the button has the .pressed class, fade the top layer IN */
+/* 3. Trigger: Fade the top layer IN on press */
 .xbox .button.pressed::after {
     opacity: 1;
 }
 
-/* 4. Exact Pixel Mapping for your 100px Grid Layout */
+/* 4. Corrected Physical Layout Coordinates (Shifted by -26px to re-center) */
 
 .xbox .a {
-    top: 108px;
-    left: 55px;
-    background-position: 0px 0px; /* Column 1, Row 1 (Unpressed) */
+    top: 82px;          /* Original 108px - 26px */
+    left: 29px;         /* Original 55px - 26px */
+    background-position: 0px 0px; 
 }
 .xbox .a::after {
-    background-position: 0px -100px; /* Column 1, Row 2 (Pressed) */
+    background-position: 0px -100px; 
 }
 
 .xbox .b {
-    top: 58px;
-    right: 0px;
-    background-position: -100px 0px; /* Column 2, Row 1 (Unpressed) */
+    top: 32px;          /* Original 58px - 26px */
+    right: -26px;       /* Original 0px - 26px */
+    background-position: -100px 0px; 
 }
 .xbox .b::after {
-    background-position: -100px -100px; /* Column 2, Row 2 (Pressed) */
+    background-position: -100px -100px; 
 }
 
 .xbox .x {
-    top: 58px;
-    left: 4px;
-    background-position: -200px 0px; /* Column 3, Row 1 (Unpressed) */
+    top: 32px;          /* Original 58px - 26px */
+    left: -22px;        /* Original 4px - 26px */
+    background-position: -200px 0px; 
 }
 .xbox .x::after {
-    background-position: -200px -100px; /* Column 3, Row 2 (Pressed) */
+    background-position: -200px -100px; 
 }
 
 .xbox .y {
-    top: 7px;
-    left: 55px;
-    background-position: -300px 0px; /* Column 4, Row 1 (Unpressed) */
+    top: -19px;         /* Original 7px - 26px */
+    left: 29px;         /* Original 55px - 26px */
+    background-position: -300px 0px; 
 }
 .xbox .y::after {
-    background-position: -300px -100px; /* Column 4, Row 2 (Pressed) */
+    background-position: -300px -100px; 
 }
 
 
