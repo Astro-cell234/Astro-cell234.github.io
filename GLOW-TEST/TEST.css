@@ -141,7 +141,7 @@
 /* 1. Base style for the UNPRESSED button (Bottom Layer using your edited PNG) */
 .xbox .button {
     position: absolute;
-    background: url(ABXY GLOW NEW SHAPE TEST.png) no-repeat;
+    background: url(ABXY-GLOW-NEW-SHAPE-TEST.png) no-repeat;
     width: 100px;       /* Your 100px grid box width */
     height: 100px;      /* Your 100px grid box height */
 }
