@@ -1,0 +1,297 @@
+/*BEGIN Xbox One Controller Styling*/
+.controller.xbox {
+    background: url(BASE.svg);
+    height: 630px;
+    width: 750px;
+    /*    margin-left: -375px;
+        margin-top: -285px;*/
+}
+
+.xbox.white {
+    background: url(xbox-assets/base-white.svg);
+}
+
+.xbox.disconnected {
+    background: url(xbox-assets/disconnected.svg);
+}
+
+.xbox.disconnected div {
+    display: none;
+}
+
+.xbox .triggers {
+    width: 446px;
+    height: 121px;
+    position: absolute;
+    left: 152px;
+}
+
+.xbox .trigger {
+    width: 88px;
+    height: 121px;
+    background: url(TRIGGER.svg);
+    opacity: 0;
+}
+
+.xbox .trigger.left {
+    float: left;
+    background-position: 0 0;
+}
+
+.xbox .trigger.right {
+    float: right;
+    transform: rotateY(180deg);
+}
+
+.xbox .bumper {
+    width: 170px;
+    height: 61px;
+    background: url(BUMPER.svg);
+    opacity: 0;
+}
+
+.xbox .bumpers {
+    position: absolute;
+    width: 536px;
+    height: 61px;
+    left: 107px;
+    top: 129px;
+}
+
+.xbox .bumper.pressed {
+    opacity: 1;
+}
+
+.xbox .bumper.left {
+    float: left;
+}
+
+.xbox .bumper.right {
+    float: right;
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+
+.xbox .quadrant {
+    position: absolute;
+    background: url(QUAD.svg);
+    height: 45px;
+    width: 45px;
+    top: 258px;
+    left: 354px;
+    z-index: 0;
+}
+
+.xbox .p0 {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+}
+
+.xbox .p1 {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.xbox .p2 {
+    -webkit-transform: rotate(270deg);
+    transform: rotate(270deg);
+}
+
+.xbox .p3 {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.xbox .arrows {
+    position: absolute;
+    width: 141px;
+    height: 33px;
+    top: 264px;
+    left: 306px;
+}
+
+.xbox .back, .xbox .start {
+    background: url(START-SELECT.svg);
+    width: 33px;
+    height: 33px;
+    opacity: 0;
+}
+
+.xbox .back.pressed, .xbox .start.pressed {
+    opacity: 1;
+}
+
+.xbox .back {
+    float: left;
+}
+
+.xbox .start {
+    background-position: 33px 0px;
+    float: right;
+}
+
+.xbox .abxy {
+    position: absolute;
+    width: 153px;
+    height: 156px;
+    top: 192px;
+    left: 488px;
+}
+
+/* 1. Base style for the UNPRESSED button (Bottom Layer using your edited PNG) */
+.xbox .button {
+    position: absolute;
+    background: url(ABXY GLOW NEW SHAPE TEST.png) no-repeat;
+    width: 100px;       /* Your 100px grid box width */
+    height: 100px;      /* Your 100px grid box height */
+}
+
+/* 2. Setup for the PRESSED button (Top Layer using the same edited PNG) */
+.xbox .button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(xbox-assets/abxy.png) no-repeat;
+    
+    /* Hide the pressed layer completely by default */
+    opacity: 0; 
+    
+    /* Smoothly fade the opacity over 0.15 seconds */
+    transition: opacity 0.15s ease-in-out; 
+}
+
+/* 3. Trigger: When the button has the .pressed class, fade the top layer IN */
+.xbox .button.pressed::after {
+    opacity: 1;
+}
+
+/* 4. Exact Pixel Mapping for your 100px Grid Layout */
+
+.xbox .a {
+    top: 108px;
+    left: 55px;
+    background-position: 0px 0px; /* Column 1, Row 1 (Unpressed) */
+}
+.xbox .a::after {
+    background-position: 0px -100px; /* Column 1, Row 2 (Pressed) */
+}
+
+.xbox .b {
+    top: 58px;
+    right: 0px;
+    background-position: -100px 0px; /* Column 2, Row 1 (Unpressed) */
+}
+.xbox .b::after {
+    background-position: -100px -100px; /* Column 2, Row 2 (Pressed) */
+}
+
+.xbox .x {
+    top: 58px;
+    left: 4px;
+    background-position: -200px 0px; /* Column 3, Row 1 (Unpressed) */
+}
+.xbox .x::after {
+    background-position: -200px -100px; /* Column 3, Row 2 (Pressed) */
+}
+
+.xbox .y {
+    top: 7px;
+    left: 55px;
+    background-position: -300px 0px; /* Column 4, Row 1 (Unpressed) */
+}
+.xbox .y::after {
+    background-position: -300px -100px; /* Column 4, Row 2 (Pressed) */
+}
+
+
+.xbox .sticks {
+    position: absolute;
+    width: 371px;
+    height: 196px;
+    top: 239px;
+    left: 144px;
+}
+
+.xbox .stick {
+    position: absolute;
+    background: url(JOYSTICK.svg);
+    background-position: -85px 0;
+    height: 83px;
+    width: 83px;
+}
+
+.xbox .stick.pressed {
+    background-position: 0 0;
+}
+
+.xbox .stick.left {
+    top: 0;
+    left: 0;
+}
+
+.xbox .stick.right {
+    top: 113px;
+    left: 288px;
+}
+
+.xbox .dpad {
+    position: absolute;
+    width: 110px;
+    height: 111px;
+    top: 345px;
+    left: 223px;
+}
+
+.xbox .face {
+    background: url(DPAD.svg);
+    position: absolute;
+    opacity: 0;
+}
+
+.xbox .face.pressed {
+    opacity: 1;
+}
+
+.xbox .face.up {
+    background-position: 34px 0;
+    left: 38px;
+    top: 0px;
+    width: 34px;
+    height: 56px;
+}
+
+.xbox .face.down {
+    left: 38px;
+    bottom: 0;
+    width: 34px;
+    height: 56px;
+}
+
+.xbox .face.left {
+    background-position: 0 -93px;
+    width: 55px;
+    height: 35px;
+    top: 38px;
+    left: 0;
+}
+
+.xbox .face.right {
+    background-position: 0 -57px;
+    width: 55px;
+    height: 35px;
+    top: 38px;
+    right: 0;
+}
+
+.xbox.half {
+    margin-top: -315px;
+}
+
+.xbox {
+    background: no-repeat center;
+}
+
+/*END Xbox One Controller Styling*/
