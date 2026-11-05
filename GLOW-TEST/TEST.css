@@ -204,71 +204,72 @@
     left: 144px;
 }
 
-/* 1. Base style for the stick wrapper (Completely clear layout box) */
+/* 1. Base style for the stick (LOCKED to native sizes so the script moves perfectly!) */
 .xbox .stick {
     position: absolute !important;
-    background: none !important;    
-    width: 100px !important;       
-    height: 100px !important;      
-    margin-top: 0px !important;
+    background: none !important;    /* Clears original graphics completely */
+    width: 83px !important;        /* NATIVE SIZE: Keeps JavaScript physics accurate */
+    height: 83px !important;       /* NATIVE SIZE: Keeps JavaScript physics accurate */
+    margin-top: 0px !important;    /* Prevents native 5px jitter drops */
+    
+    /* Safely allow your custom 100px layer inside to spill past the 83px edges */
+    overflow: visible !important;  
 }
 
-/* 2. Create the inner graphics layer */
+/* 2. Create the inner graphics layer (This is where your 100px canvas lives) */
 .xbox .stick::before {
     content: "" !important;
     position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    background-image: url(JOYSTICK-glow-unpressed.png) !important; 
+    
+    /* Shift the graphic up and left by 8.5px to perfectly center your 100px box over the 83px box */
+    top: -8.5px !important;
+    left: -8.5px !important;
+    
+    width: 100px !important;       /* Your custom 100px box dimensions */
+    height: 100px !important;      /* Your custom 100px box dimensions */
+    
+    background-image: url(JOYSTICK-glow-unpressed.png) !important; /* Loads unpressed look */
     background-repeat: no-repeat !important;
     background-position: 0px 0px !important;
     
-    /* Smoothly cross-fades the graphic changes with zero sliding */
+    /* Smoothly cross-fades the images when swapped with no sliding layout possible */
     transition: background-image 0.12s ease-in-out !important; 
 }
 
-/* 3. Global Pressed Overrides for the INNER graphic layer */
+/* 3. Global Pressed Override - Changes ONLY the image on the inner layer */
 .controller.xbox .stick.pressed::before,
 .xbox .stick.pressed::before {
-    background-image: url(JOYSTICK-glow-pressed-new.png) !important; 
+    background-image: url(JOYSTICK-glow-pressed-new.png) !important; /* Swaps to pressed look */
     background-position: 0px 0px !important; 
 }
 
-/* ==========================================================================
-   4. THE UNLOCK: Kill Gamepad Viewer's Native Shifting Restraints
-   ========================================================================== */
-/* These combinations match Gamepad Viewer's internal engine strings exactly.
-   By resetting them to 0px and removing 'important' from the transform, 
-   we force the app to calculate full up/down vertical movement. */
+/* 4. Kill Gamepad Viewer's Native Shifting Restraints on the Wrapper */
 .xbox .stick.pressed,
-.xbox .stick.pressed.left,
-.xbox .stick.pressed.right,
-.controller.xbox .stick.pressed,
-.controller.xbox .stick.pressed.left,
-.controller.xbox .stick.pressed.right {
+.controller.xbox .stick.pressed {
     margin-top: 0px !important; 
     background-position: 0px 0px !important;
     background-image: none !important;
     background: none !important;
-    
-    /* NO !important here. This allows full JavaScript 360-degree translations */
-    transform: translate(var(--thumbstick-x, 0px), var(--thumbstick-y, 0px)); 
+    /* Do NOT include a transform or !important override here. 
+       This completely frees up the inline JavaScript to handle full 360-degree range movement! */
 }
 
 /* ==========================================================================
-   5. Physical Layout Positioning on the controller face
+   5. Original Physical Layout Positions 
    ========================================================================== */
+/* Because the wrapper is back to its original 83px size, we can return to the 
+   exact default coordinates from your original file. No manual padding math needed! */
+
 .xbox .stick.left {
-    top: -8px !important;          
-    left: -8px !important;         
+    top: 0px !important;          
+    left: 0px !important;         
 }
 
 .xbox .stick.right {
-    top: 105px !important;         
-    left: 280px !important;        
+    top: 113px !important;         
+    left: 288px !important;        
 }
+
 
 
 
