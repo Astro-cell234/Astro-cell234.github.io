@@ -136,61 +136,37 @@
     height: 156px;
     top: 192px;
     left: 488px;
-    /* Prevent any expanded glowing effects or misbehaving buttons from getting cut off */
-    overflow: visible !important; 
+    overflow: visible !important;
 }
 
-/* 1. Base style for the UNPRESSED button (Bottom Layer) */
+/* 1. Base style for the button (Default Unpressed File) */
 .xbox .button {
     position: absolute;
-    background: url(ABXY-GLOW-NEW-SHAPE-TEST.png) no-repeat !important;
+    background-image: url(ABXY-GLOW-NEW-SHAPE-TEST.png) !important;
+    background-repeat: no-repeat !important;
     width: 100px !important;       
     height: 100px !important;      
-    margin-top: 0px !important;    /* Pre-emptive baseline reset */
+    margin-top: 0px !important;
+    
+    /* The Magic: Smoothly fade the background image swap over 0.15 seconds */
+    transition: background-image 0.15s ease-in-out !important;
 }
 
-/* 2. SPECIFIC OVERRIDE FOR GAMEPAD VIEWER MOVEMENT SCRIPT */
-/* This matches Gamepad Viewer's exact CSS selector chain to destroy the 5px physical dropdown */
+/* 2. Overrides Gamepad Viewer's spatial script and forces the Pressed File swap */
 .controller.xbox .button.pressed,
 .xbox .button.pressed {
-    background-position-y: 0px !important; 
-    margin-top: 0px !important;            /* Destroys the 5px drop moving the frame */
-    transform: none !important;            /* Stops any accidental translations */
+    background-image: url(xbox-assets/abxy-pressed.png) !important; /* Swaps the entire file */
+    background-position-y: 0px !important;  /* Blocks the native 48px crop script */
+    margin-top: 0px !important;             /* Blocks the native 5px drop script */
     opacity: 1 !important;
 }
 
-/* 3. Setup for the PRESSED button (Top Layer) */
-.xbox .button::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url(xbox-assets/abxy.png) no-repeat !important;
-    
-    /* Hide the pressed layer completely by default */
-    opacity: 0; 
-    
-    /* Smoothly fade the opacity over 0.15 seconds */
-    transition: opacity 0.15s ease-in-out; 
-}
-
-/* 4. Trigger: When active or pressed, fade the top layer IN */
-.xbox .button.pressed::after {
-    opacity: 1 !important;
-    margin-top: 0px !important;
-}
-
-/* 5. Coordinates for your 100px Grid Layout */
+/* 3. Horizontal Grid Positioning (Remains exactly the same on your 100px layout) */
 
 .xbox .a {
     top: 82px !important;          
     left: 29px !important;         
     background-position: 0px 0px !important; 
-}
-.xbox .a::after {
-    background-position: 0px -100px !important; 
 }
 
 .xbox .b {
@@ -199,26 +175,17 @@
     left: auto !important;         
     background-position: -100px 0px !important; 
 }
-.xbox .b::after {
-    background-position: -100px -100px !important; 
-}
 
 .xbox .x {
     top: 32px !important;          
     left: -22px !important;        
     background-position: -200px 0px !important; 
 }
-.xbox .x::after {
-    background-position: -200px -100px !important; 
-}
 
 .xbox .y {
     top: -19px !important;         
     left: 29px !important;         
     background-position: -300px 0px !important; 
-}
-.xbox .y::after {
-    background-position: -300px -100px !important; 
 }
 
 
