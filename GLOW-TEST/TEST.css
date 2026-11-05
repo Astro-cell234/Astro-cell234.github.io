@@ -139,93 +139,58 @@
     overflow: visible !important;
 }
 
-/* 1. Base style for the UNPRESSED button (Stays completely static) */
+/* 1. Base style for the button (Default Unpressed File) */
 .xbox .button {
-    position: absolute !important;
-    background-image: url(ABXY-GLOW-NEW-SHAPE-TEST-unpressed.png) !important; /* Points to unpressed row ONLY */
+    position: absolute;
+    background-image: url(ABXY-GLOW-NEW-SHAPE-TEST-unpressed.png) !important;
     background-repeat: no-repeat !important;
     width: 100px !important;       
     height: 100px !important;      
     margin-top: 0px !important;
     
-    /* Kill any rogue global sliding animations affecting the base layout */
-    transition: none !important; 
+    /* Default position is flat/resting */
+    transform: translateY(0px) !important; 
+    
+    /* The Magic: Smoothly cross-fades the image AND dips the button down/up */
+    transition: background-image 0.12s ease-in-out, transform 0.08s ease-out !important;
 }
 
-/* 2. OVERRIDE GAMEPAD VIEWER: Lock down base frame dimensions */
+/* 2. Global Pressed Override - Forces the image swap AND the physical dip down */
 .controller.xbox .button.pressed,
 .xbox .button.pressed {
-    margin-top: 0px !important;            
-    transform: none !important;
+    background-image: url(ABXY-GLOW-NEW-SHAPE-TEST-pressed.png) !important; 
+    background-position-y: 0px !important;  
+    margin-top: 0px !important;             
     opacity: 1 !important;
-    transition: none !important; 
-}
-
-/* 3. Setup for the PRESSED button (Top Layer) */
-.xbox .button::after {
-    content: "" !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    background-image: url(ABXY-GLOW-NEW-SHAPE-TEST-pressed.png) !important; /* Points to pressed row ONLY */
-    background-repeat: no-repeat !important;
     
-    /* Hide the pressed layer completely by default */
-    opacity: 0 !important; 
-    
-    /* Explicitly lock transition to opacity ONLY, blocking all spatial movement */
-    transition: opacity 0.12s ease-in-out !important; 
+    /* ADDED: Dips all buttons down 4 pixels globally when pressed */
+    transform: translateY(4px) !important; 
 }
 
-/* 4. Trigger: When active or pressed, fade the top layer IN */
-.xbox .button.pressed::after {
-    opacity: 1 !important;
-}
+/* 3. Horizontal Grid Positioning (Remains exactly the same on your 100px layout) */
 
-/* ==========================================================================
-   5. X-AXIS GRID MAPPING (Row 1 and Row 2 match column positions exactly)
-   ========================================================================== */
-
-/* --- BUTTON A --- */
-.xbox .a, .xbox .button.pressed.a, .controller.xbox .button.pressed.a {
+.xbox .a {
     top: 82px !important;          
     left: 29px !important;         
-    background-position: 0px 0px !important; /* Column 1 */
-}
-.xbox .a::after {
-    background-position: 0px 0px !important; /* Column 1 (No -100px needed anymore!) */
+    background-position: 0px 0px !important; 
 }
 
-/* --- BUTTON B --- */
-.xbox .b, .xbox .button.pressed.b, .controller.xbox .button.pressed.b {
+.xbox .b {
     top: 32px !important;          
     right: -26px !important;       
     left: auto !important;         
-    background-position: -100px 0px !important; /* Column 2 */
-}
-.xbox .b::after {
     background-position: -100px 0px !important; 
 }
 
-/* --- BUTTON X --- */
-.xbox .x, .xbox .button.pressed.x, .controller.xbox .button.pressed.x {
+.xbox .x {
     top: 32px !important;          
     left: -22px !important;        
-    background-position: -200px 0px !important; /* Column 3 */
-}
-.xbox .x::after {
     background-position: -200px 0px !important; 
 }
 
-/* --- BUTTON Y --- */
-.xbox .y, .xbox .button.pressed.y, .controller.xbox .button.pressed.y {
+.xbox .y {
     top: -19px !important;         
     left: 29px !important;         
-    background-position: -300px 0px !important; /* Column 4 */
-}
-.xbox .y::after {
     background-position: -300px 0px !important; 
 }
 
