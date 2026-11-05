@@ -139,85 +139,92 @@
     overflow: visible !important;
 }
 
-/* 1. Universal layout rule for your ABXY buttons */
+/* 1. Base style for the UNPRESSED button (Stays completely static) */
 .xbox .button {
     position: absolute !important;
     background-image: url(ABXY-GLOW-NEW-SHAPE-TEST.png) !important;
     background-repeat: no-repeat !important;
-    width: 100px !important;       /* Locks your 100px Photoshop grid width */
-    height: 100px !important;      /* Locks your 100px Photoshop grid height */
-    margin-top: 0px !important;    /* Completely stops the native 5px drop */
-    
-    /* Smoothly slides the sprite sheet vertically over 0.12 seconds */
-    transition: background-position-y 0.12s ease-in-out !important; 
+    width: 100px !important;       
+    height: 100px !important;      
+    margin-top: 0px !important;
 }
 
-/* 2. Global pressed state killer - blocks Gamepad Viewer from rewriting values */
+/* 2. SPECIFIC INTERCEPT: Blocks Gamepad Viewer from shifting the base layer */
 .controller.xbox .button.pressed,
 .xbox .button.pressed {
-    margin-top: 0px !important;
+    background-position-y: 0px !important; /* Forces the unpressed row to stay as the base image */
+    margin-top: 0px !important;            /* Stops the native 5px physical layout drop */
     transform: none !important;
     opacity: 1 !important;
 }
 
+/* 3. Setup for the PRESSED button (Top Layer) */
+.xbox .button::after {
+    content: "" !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-image: url(xbox-assets/abxy.png) !important;
+    background-repeat: no-repeat !important;
+    
+    /* Hide the pressed layer completely by default */
+    opacity: 0 !important; 
+    
+    /* Smoothly fade the opacity in over 0.12 seconds without moving any coordinates */
+    transition: opacity 0.12s ease-in-out !important; 
+}
+
+/* 4. Trigger: When the button class becomes .pressed, fade the top layer IN */
+.xbox .button.pressed::after {
+    opacity: 1 !important;
+}
+
 /* ==========================================================================
-   3. COMBINED LAYOUT & COMPONENT MAPPING (UNPRESSED & PRESSED STATES)
+   5. STRICT MAPPING (Row 1 stays fixed on base, Row 2 maps to ::after)
    ========================================================================== */
 
 /* --- BUTTON A --- */
-/* Target all variants Gamepad Viewer injects when A is resting vs pressed */
-.xbox .a, 
-.xbox .button.a, 
-.xbox .button.pressed.a, 
-.controller.xbox .button.pressed.a {
-    top: 82px !important;          /* Fixed padding shift */
-    left: 29px !important;         /* Fixed padding shift */
-    background-position-x: 0px !important; /* Column 1 */
+.xbox .a, .xbox .button.pressed.a, .controller.xbox .button.pressed.a {
+    top: 82px !important;          
+    left: 29px !important;         
+    background-position: 0px 0px !important; /* Column 1, Row 1 (Unpressed) */
 }
-/* Unpressed Position */
-.xbox .a { background-position-y: 0px !important; }
-/* Pressed Position - Slides your sheet down 100px to your Photoshop Row 2 */
-.xbox .button.pressed.a { background-position-y: -100px !important; }
-
+.xbox .a::after {
+    background-position: 0px -100px !important; /* Column 1, Row 2 (Pressed) */
+}
 
 /* --- BUTTON B --- */
-.xbox .b, 
-.xbox .button.b, 
-.xbox .button.pressed.b, 
-.controller.xbox .button.pressed.b {
+.xbox .b, .xbox .button.pressed.b, .controller.xbox .button.pressed.b {
     top: 32px !important;          
     right: -26px !important;       
     left: auto !important;         
-    background-position-x: -100px !important; /* Column 2 */
+    background-position: -100px 0px !important; /* Column 2, Row 1 (Unpressed) */
 }
-.xbox .b { background-position-y: 0px !important; }
-.xbox .button.pressed.b { background-position-y: -100px !important; }
-
+.xbox .b::after {
+    background-position: -100px -100px !important; /* Column 2, Row 2 (Pressed) */
+}
 
 /* --- BUTTON X --- */
-.xbox .x, 
-.xbox .button.x, 
-.xbox .button.pressed.x, 
-.controller.xbox .button.pressed.x {
+.xbox .x, .xbox .button.pressed.x, .controller.xbox .button.pressed.x {
     top: 32px !important;          
     left: -22px !important;        
-    background-position-x: -200px !important; /* Column 3 */
+    background-position: -200px 0px !important; /* Column 3, Row 1 (Unpressed) */
 }
-.xbox .x { background-position-y: 0px !important; }
-.xbox .button.pressed.x { background-position-y: -100px !important; }
-
+.xbox .x::after {
+    background-position: -200px -100px !important; /* Column 3, Row 2 (Pressed) */
+}
 
 /* --- BUTTON Y --- */
-.xbox .y, 
-.xbox .button.y, 
-.xbox .button.pressed.y, 
-.controller.xbox .button.pressed.y {
+.xbox .y, .xbox .button.pressed.y, .controller.xbox .button.pressed.y {
     top: -19px !important;         
     left: 29px !important;         
-    background-position-x: -300px !important; /* Column 4 */
+    background-position: -300px 0px !important; /* Column 4, Row 1 (Unpressed) */
 }
-.xbox .y { background-position-y: 0px !important; }
-.xbox .button.pressed.y { background-position-y: -100px !important; }
+.xbox .y::after {
+    background-position: -300px -100px !important; /* Column 4, Row 2 (Pressed) */
+}
 
 
 .xbox .stick {
