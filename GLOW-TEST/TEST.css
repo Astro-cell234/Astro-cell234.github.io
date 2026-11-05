@@ -142,7 +142,7 @@
 /* 1. Universal layout rule for your ABXY buttons */
 .xbox .button {
     position: absolute !important;
-    background-image: url(ABXY-GLOW-NEW-SHAPE-TEST.png) !important;
+    background-image: url(xbox-assets/abxy.png) !important;
     background-repeat: no-repeat !important;
     width: 100px !important;       /* Locks your 100px Photoshop grid width */
     height: 100px !important;      /* Locks your 100px Photoshop grid height */
