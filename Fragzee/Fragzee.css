@@ -1,6 +1,6 @@
 /*BEGIN Xbox One Controller Styling*/
 .controller.xbox {
-    background: url(BASE.svg);
+    background: url(BASE-FRAGZ.png);
     height: 630px;
     width: 750px;
     /*    margin-left: -375px;
@@ -142,7 +142,7 @@
 /* 1. Base style for the button (Default Unpressed File) */
 .xbox .button {
     position: absolute;
-    background-image: url(ABXY-GLOW-NEW-SHAPE-TEST-unpressed.png) !important;
+    background-image: url(ABXY-FRAGZ-UNPRESSED.png) !important;
     background-repeat: no-repeat !important;
     width: 100px !important;       
     height: 100px !important;      
@@ -158,7 +158,7 @@
 /* 2. Global Pressed Override - Forces the image swap AND the physical dip down */
 .controller.xbox .button.pressed,
 .xbox .button.pressed {
-    background-image: url(ABXY-GLOW-NEW-SHAPE-TEST-pressed.png) !important; 
+    background-image: url(ABXY-FRAGZ-PRESSED.png) !important; 
     background-position-y: 0px !important;  
     margin-top: 0px !important;             
     opacity: 1 !important;
@@ -226,7 +226,7 @@
     width: 100px !important;       
     height: 100px !important;      
     
-    background-image: url(JOYSTICK-glow-unpressed.png) !important; /* Standard Unpressed File */
+    background-image: url(JOYSTICK-FRAGZ-UNPRESSED.png) !important; /* Standard Unpressed File */
     background-repeat: no-repeat !important;
     background-position: 0px 0px !important;
     
@@ -236,7 +236,7 @@
 
 /* 3. Global Pressed Override - Changes ONLY the image on the inner layer */
 .xbox .stick.pressed::before {
-    background-image: url(JOYSTICK-glow-pressed-new.png) !important; /* Swaps to pressed look */
+    background-image: url(JOYSTICK-FRAGZ-PRESSED.png) !important; /* Swaps to pressed look */
     background-position: 0px 0px !important; 
 }
 
